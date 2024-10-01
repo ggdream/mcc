@@ -11,7 +11,7 @@ proxy:
   password:
 
 notify:
-  sences:
+  scenes:
     - push
   dingtalk:
     token:

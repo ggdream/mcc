@@ -2,7 +2,6 @@ package router
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"log/slog"
 	"net/http"
@@ -33,7 +32,6 @@ func GitWebhook(c *gin.Context) {
 	}
 
 	data, err := io.ReadAll(c.Request.Body)
-	fmt.Println(string(data))
 	if err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
