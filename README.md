@@ -3,6 +3,8 @@
 将GitHub、GitLab、Gitea等服务的Webhook打到该项目，如果是`push`消息，则会拉下对应仓库代码，并按照配置文件进行cicd。整个过程都在部署该服务的主机完成。
 无容器依赖，足够轻量，方便低成本、少人力的开发流程。
 
+在代码仓库根目录添加配置即可：`.mcc.yaml`。目前有两类CICD方案
+
 - type: server
 
 用来打包并部署不退出的服务，比如web server、Job等。
