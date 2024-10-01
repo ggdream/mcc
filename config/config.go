@@ -11,6 +11,14 @@ type Config struct {
 	RunsBaseDir   string `yaml:"runsBaseDir"`
 	ServerBaseDir string `yaml:"serverBaseDir"`
 	StaticBaseDir string `yaml:"staticBaseDir"`
+
+	Proxy Proxy `yaml:"proxy"`
+}
+
+type Proxy struct {
+	URL      string `yaml:"url"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
 }
 
 func Init(data []byte) (err error) {

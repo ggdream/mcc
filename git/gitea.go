@@ -1,4 +1,4 @@
-package main
+package git
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/ggdream/mcc/payload"
 )
 
-var _ GitForward = (*Gitea)(nil)
+var _ Git = (*Gitea)(nil)
 
 type Gitea struct {
 	event string

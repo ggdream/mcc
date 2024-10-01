@@ -1,6 +1,0 @@
-db: ./data/mcc.db
-logs: ./logs/mcc.log
-
-runsBaseDir: ./data/runs
-serverBaseDir: ./data/server
-staticBaseDir: ./data/static

@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"io"
 	"io/fs"
@@ -13,10 +14,16 @@ import (
 
 	"github.com/ggdream/mcc/config"
 	"github.com/ggdream/mcc/db"
+	"github.com/ggdream/mcc/router"
 )
 
+var configPath string
+
 func main() {
-	data, err := os.ReadFile("config.yaml")
+	flag.StringVar(&configPath, "config", "config.yaml", "config file path")
+	flag.Parse()
+
+	data, err := os.ReadFile(configPath)
 	if err != nil {
 		panic(err)
 	}
@@ -49,7 +56,7 @@ func main() {
 	}
 
 	r := gin.Default()
-	r.POST("/:source", GitWebhook)
+	r.POST("/:source", router.GitWebhook)
 
 	fmt.Println(r.Run(":8080"))
 }

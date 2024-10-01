@@ -1,0 +1,11 @@
+db: ./temp/data/mcc.db
+logs: ./temp/logs/mcc.log
+
+runsBaseDir: ./temp/data/runs
+serverBaseDir: ./temp/data/server
+staticBaseDir: ./temp/data/static
+
+proxy:
+  url: http://127.0.0.1:10809
+  username:
+  password:
