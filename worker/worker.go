@@ -19,6 +19,7 @@ import (
 
 	"github.com/ggdream/mcc/config"
 	"github.com/ggdream/mcc/db"
+	"github.com/ggdream/mcc/notify"
 	"github.com/ggdream/mcc/payload"
 )
 
@@ -224,8 +225,6 @@ func (w *Worker) Run(ctx context.Context) error {
 			return err
 		}
 
-		return nil
-
 	case "static":
 		dst := filepath.Join(w.staticBaseDir, w.payload.Repo.FullName)
 		err = os.RemoveAll(dst)
@@ -239,7 +238,11 @@ func (w *Worker) Run(ctx context.Context) error {
 			return err
 		}
 
-		return nil
+	}
+
+	err = notify.SendPushMessage(ctx, w.payload)
+	if err != nil {
+		slog.Error("send push message failed", "payload", w.payload, "err", err)
 	}
 
 	return nil

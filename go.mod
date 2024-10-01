@@ -4,6 +4,7 @@ go 1.23.0
 
 require (
 	code.gitea.io/gitea v1.22.2
+	github.com/blinkbean/dingtalk v1.1.3
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-git/go-git/v5 v5.11.0
 	github.com/go-playground/webhooks/v6 v6.4.0

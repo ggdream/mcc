@@ -14,6 +14,7 @@ import (
 
 	"github.com/ggdream/mcc/config"
 	"github.com/ggdream/mcc/db"
+	"github.com/ggdream/mcc/notify"
 	"github.com/ggdream/mcc/router"
 )
 
@@ -53,6 +54,13 @@ func main() {
 	err = db.Init(config.Get().DB)
 	if err != nil {
 		panic(err)
+	}
+	scenes, token, secret := config.Get().Notify.Scenes, config.Get().Notify.DingTalk.Token, config.Get().Notify.DingTalk.Secret
+	if token != "" && secret != "" {
+		err = notify.Init(scenes, token, secret)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	r := gin.Default()

@@ -17,8 +17,19 @@ type Config struct {
 	Gitea  Gitea  `yaml:"gitea"`
 	Github Github `yaml:"github"`
 	Gitlab Gitlab `yaml:"gitlab"`
+
+	Notify Notify `yaml:"notify"`
 }
 
+type Notify struct {
+	Scenes   []string `yaml:"scenes"`
+	DingTalk DingTalk `yaml:"dingtalk"`
+}
+
+type DingTalk struct {
+	Token  string `yaml:"token"`
+	Secret string `yaml:"secret"`
+}
 type Proxy struct {
 	URL      string `yaml:"url"`
 	Username string `yaml:"username"`
