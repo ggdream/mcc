@@ -23,7 +23,7 @@ func NewGithub(event string) *GitHub {
 // Event implements Git.
 func (g *GitHub) Event() Event {
 	switch g.event {
-	case "push":
+	case string(github.PushEvent):
 		return Push
 	default:
 		return Unknown

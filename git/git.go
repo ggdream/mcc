@@ -22,6 +22,7 @@ func (s Source) String() string {
 const (
 	SourceGitea  Source = "gitea"
 	SourceGithub Source = "github"
+	SourceGitlab Source = "gitlab"
 )
 
 type Event string

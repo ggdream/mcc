@@ -9,3 +9,18 @@ proxy:
   url: http://127.0.0.1:10809
   username:
   password:
+
+gitea:
+  auth:
+    username:
+    password:
+
+github:
+  auth:
+    username:
+    password:
+
+gitlab:
+  auth:
+    username:
+    password:

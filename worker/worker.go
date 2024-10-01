@@ -15,6 +15,7 @@ import (
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
 	"github.com/go-git/go-git/v5/plumbing/transport"
+	"github.com/go-git/go-git/v5/plumbing/transport/http"
 
 	"github.com/ggdream/mcc/config"
 	"github.com/ggdream/mcc/db"
@@ -32,11 +33,13 @@ type Worker struct {
 	runsBaseDir   string
 	serverBaseDir string
 	staticBaseDir string
+	username      string
+	password      string
 	stages        []Stage
 	payload       *payload.PushPayload
 }
 
-func NewWorker(payload *payload.PushPayload, runsBaseDir, serverBaseDir, staticBaseDir string, stages ...Stage) (*Worker, error) {
+func NewWorker(payload *payload.PushPayload, runsBaseDir, serverBaseDir, staticBaseDir, username, password string, stages ...Stage) (*Worker, error) {
 	worker := &Worker{
 		stages:        stages,
 		runsBaseDir:   runsBaseDir,
@@ -69,8 +72,14 @@ func (w *Worker) Run(ctx context.Context) error {
 
 	// pull code
 	cloneOptions := &git.CloneOptions{
-		URL:      w.payload.Repo.CloneURL,
-		Progress: os.Stdout,
+		URL: w.payload.Repo.CloneURL,
+		// Progress: os.Stdout,
+	}
+	if w.username != "" && w.password != "" {
+		cloneOptions.Auth = &http.BasicAuth{
+			Username: w.username,
+			Password: w.password,
+		}
 	}
 	if config.Get().Proxy.URL != "" {
 		cloneOptions.ProxyOptions = transport.ProxyOptions{

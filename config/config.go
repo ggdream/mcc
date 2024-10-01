@@ -13,10 +13,31 @@ type Config struct {
 	StaticBaseDir string `yaml:"staticBaseDir"`
 
 	Proxy Proxy `yaml:"proxy"`
+
+	Gitea  Gitea  `yaml:"gitea"`
+	Github Github `yaml:"github"`
+	Gitlab Gitlab `yaml:"gitlab"`
 }
 
 type Proxy struct {
 	URL      string `yaml:"url"`
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+}
+
+type Gitea struct {
+	Auth Auth `yaml:"auth"`
+}
+
+type Github struct {
+	Auth Auth `yaml:"auth"`
+}
+
+type Gitlab struct {
+	Auth Auth `yaml:"auth"`
+}
+
+type Auth struct {
 	Username string `yaml:"username"`
 	Password string `yaml:"password"`
 }
