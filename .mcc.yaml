@@ -1,0 +1,6 @@
+type: server
+steps:
+  - go mod download
+  - go build -v
+apply: ./build
+command: ["./server", "-c", "./config.yaml"]

@@ -1,0 +1,9 @@
+.idea
+.vscode
+
+/build
+/logs
+/data
+
+*.log
+*.exe
